@@ -15,11 +15,10 @@ inputs:
       Push to AUR
     required: false
     default: "false"
-  ssh-private-key:
+  ssh_private_key:
     description: >-
       SSH private key for AUR
     required: false
-    default: ${{ secrets.SSH_PRIVATE_KEY }}
 
 runs:
   using: docker
