@@ -1,0 +1,30 @@
+name: PKGBUILD Builder
+description: Build package for Arch Linux from PKGBUILD by GitHub Actions.
+
+branding:
+  icon: triangle
+  color: blue
+
+inputs:
+  package:
+    description: >-
+      Package name on AUR
+    required: true
+  push:
+    description: >-
+      Push to AUR
+    required: false
+    default: "false"
+  ssh-private-key:
+    description: >-
+      SSH private key for AUR
+    required: false
+    default: ${{ secrets.SSH_PRIVATE_KEY }}
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.package }}
+    - ${{ inputs.push }}
+    - ${{ inputs.ssh-private-key }}
