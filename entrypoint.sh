@@ -5,6 +5,8 @@ package=$1
 push=$2
 ssh_key=$3
 
+pacman -Sy base-devel git --noconfirm
+
 git clone https://aur.archlinux.org/${package}.git
 cd ${package}
 makepkg -s
