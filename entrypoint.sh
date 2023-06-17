@@ -14,9 +14,9 @@ chmod 777 -R $(pwd)
 
 if [ "$push" = "true" ]; then
   mkdir -p ~/.ssh
-  echo ${ssh_private_key} > ~/.ssh/id_ed25519
-  chmod 600 ~/.ssh/id_ed25519
-  ssh-keyscan -t rsa aur.archlinux.org >> ~/.ssh/known_hosts
+  echo ${ssh_private_key} > ~/.ssh/private_key
+  chmod 600 ~/.ssh/private_key
+  ssh-keyscan aur.archlinux.org >> ~/.ssh/known_hosts
   chmod 644 ~/.ssh/known_hosts
   git config --global user.email "aur@github-actions"
   git config --global user.name "GitHub Actions"
