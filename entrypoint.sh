@@ -7,7 +7,7 @@ ssh_private_key=$3
 
 pacman -Sy base-devel git openssh --noconfirm
 
-useradd -s /bin/bash builder
+useradd -m -s /bin/bash builder
 echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 chmod 777 -R $(pwd)
