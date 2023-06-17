@@ -26,6 +26,7 @@ su builder -c "git clone https://aur.archlinux.org/${package}.git"
 su builder -c "cd ${package} && makepkg -s --noconfirm && rm .SRCINFO && makepkg --printsrcinfo > .SRCINFO"
 
 if [ "$push" = "true" ]; then
+  git config --global --add safe.directory /github/workspace
   git add PKGBUILD .SRCINFO
   git commit -m "Update ${package}"
   git push origin master
