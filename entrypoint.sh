@@ -10,9 +10,10 @@ pacman -Sy base-devel git --noconfirm
 useradd -m -s /bin/bash builder
 echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+chmod 777 $(pwd)
+
 su builder -c "git clone https://aur.archlinux.org/${package}.git"
 su build -c "cd ${package} && makepkg -s && makepkg --printsrcinfo > .SRCINFO"
-chmod -R 777 ${package}
 
 if [ "$push" = "true" ]; then
   echo ${ssh_key} > ~/.ssh/private
