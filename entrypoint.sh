@@ -7,7 +7,7 @@ ssh_key=$3
 
 pacman -Sy base-devel git --noconfirm
 
-useradd -m -s /bin/bash -G sudo builder
+useradd -m -s /bin/bash builder
 echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 chmod -R 777 ${package}
 
