@@ -26,4 +26,4 @@ runs:
   args:
     - ${{ inputs.package }}
     - ${{ inputs.push }}
-    - ${{ inputs.ssh-private-key }}
+    - ${{ inputs.ssh_private_key }}

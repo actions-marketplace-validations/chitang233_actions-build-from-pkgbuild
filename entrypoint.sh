@@ -3,7 +3,7 @@
 set -e
 package=$1
 push=$2
-ssh_key=$3
+ssh_private_key=$3
 
 pacman -Sy base-devel git --noconfirm
 
@@ -16,7 +16,7 @@ su builder -c "git clone https://aur.archlinux.org/${package}.git"
 su builder -c "cd ${package} && makepkg -s --noconfirm && rm .SRCINFO && makepkg --printsrcinfo > .SRCINFO"
 
 if [ "$push" = "true" ]; then
-  echo ${ssh_key} > ~/.ssh/private
+  echo ${ssh_private_key} > ~/.ssh/private
   chmod 600 ~/.ssh/private
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/private
