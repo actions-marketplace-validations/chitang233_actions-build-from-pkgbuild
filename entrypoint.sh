@@ -5,7 +5,7 @@ package=$1
 push=$2
 ssh_private_key=$3
 
-pacman -Sy base-devel git --noconfirm
+pacman -Sy base-devel git openssh --noconfirm
 
 useradd -s /bin/bash builder
 echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -15,7 +15,6 @@ chmod 777 -R $(pwd)
 if [ "$push" = "true" ]; then
   mkdir -p ~/.ssh
   echo ${ssh_private_key} > ~/.ssh/id_ed25519
-  ls ~/.ssh
   chmod 600 ~/.ssh/id_ed25519
   ssh-keyscan -t rsa aur.archlinux.org >> ~/.ssh/known_hosts
   chmod 644 ~/.ssh/known_hosts
