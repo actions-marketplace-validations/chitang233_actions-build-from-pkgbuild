@@ -27,6 +27,7 @@ su builder -c "cd ${package} && makepkg -s --noconfirm && rm .SRCINFO && makepkg
 
 if [ "$push" = "true" ]; then
   git config --global --add safe.directory /github/workspace
+  cd ${package}
   git add PKGBUILD .SRCINFO
   git commit -m "Update ${package}"
   git push origin master
