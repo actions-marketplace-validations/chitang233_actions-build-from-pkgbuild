@@ -15,6 +15,8 @@ if [ "$push" = "true" ]; then
   chmod 600 ~/.ssh/private
   eval "$(ssh-agent -s)"
   ssh-add ~/.ssh/private
+  ssh-keyscan -t rsa aur.archlinux.org >> ~/.ssh/known_hosts
+  chmod 644 ~/.ssh/known_hosts
   git config --global user.email "aur@github-actions"
   git config --global user.name "GitHub Actions"
   git add PKGBUILD .SRCINFO
