@@ -7,10 +7,12 @@ ssh_key=$3
 
 pacman -Sy base-devel git --noconfirm
 
-git clone https://aur.archlinux.org/${package}.git
-cd ${package}
-makepkg -s
-makepkg --printsrcinfo > .SRCINFO
+useradd -m -s /bin/bash -G sudo builder
+echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+chmod -R 777 ${package}
+
+su builder -c "git clone https://aur.archlinux.org/${package}.git"
+su build -c "cd ${package} && makepkg -s && makepkg --printsrcinfo > .SRCINFO"
 
 if [ "$push" = "true" ]; then
   echo ${ssh_key} > ~/.ssh/private
